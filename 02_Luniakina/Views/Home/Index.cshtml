@@ -1,0 +1,82 @@
+﻿
+@using _02_Luniakina.Controllers;
+@using System.Web;
+@using System.Globalization;
+@model _02_Luniakina.Models.Person
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
+    <script type='text/javascript'>$(window).ready(function () {
+
+            $(".form").on("change input",
+                [".name", ".lastname", ".email", ".birthdate"],
+                function () {
+
+
+                    if ($(".name").val() !== "" &&
+                        $(".lastname").val() !== "" &&
+                        $(".email").val() !== "" &&
+                        $(".birthdate").val() !== "") {
+
+                        console.log("completed");
+                        $(".submit").prop("disabled", false);
+
+                    }
+                });
+
+        });</script>
+
+</head>
+<body>
+    <div>
+        <p>
+            Hello! Enter your name and date of birth!
+        </p>
+
+
+        @*  @using (Html.BeginForm())
+            {
+
+
+                <p>Your name: @Html.TextBoxFor(x => x.Name) </p>
+                <p>Your lastname: @Html.TextBoxFor(x => x.LastName) </p>
+                <p>Your date of birth:  @Html.EditorFor(x => x.BirthDate)</p>
+                <p>Your e-mail: @Html.TextBoxFor(x => x.EMail) </p>
+                //      <asp:Button id="b1" Text="Submit" ClientIdMode="Static" OnClientClick="return btn_disable" runat="server" />
+                <input type="submit" value="Proceed" id='submitBtn' class='enableOnInput' disabled="disabled"  />
+            }
+        *@
+
+
+        <form class="form" asp-action="Index" asp-controller="Home" method="post">
+            <label >Your name:</label>
+            <input class="name" type="text" id="txtName MyTextBox" name="UserName" asp-for="Name" /><br />
+
+            <label >Your lastname:</label>
+            <input class="lastname" type="text" id="txtLastName MyTextBox" name="UserLastName" asp-for="LastName" /><br />
+
+            <label >Your date of Birth:</label>
+            <input class="birthday" type="date" id="dateOfBirth" name="UserDateOfBirth" asp-for="BirthDate" /><br />
+
+
+            <label>Your e-mail:</label>
+            <input class="email" type="text" id="txtEMail MyTextBox" name="UserEMail" asp-for="EMail" /><br />
+
+            <input class="submit" type="submit" value="Proceed" id='submitBtn' />
+        </form>
+
+
+
+
+    </div>
+</body>
+</html>
